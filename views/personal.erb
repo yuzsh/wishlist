@@ -1,0 +1,31 @@
+
+<body>
+        <ul>
+            <% @contents.each do |content| %>
+            <li>
+                <% unless content.img.empty? %>
+                <p><%= content.name %></p>
+                    <p><img src="<%= content.img %>"></p>
+                    <p>by : user name</p>
+                    <p><%= content.body %></p>
+                    <span><%= content.good %></span>
+                    <span>
+                        <form action="/good/<%= content.id %>" method="post">
+                            <input type="submit" value="いいね"></input>
+                        </form>
+                    </span>
+                    <span>
+                        <form action="/delete/<%= content.id %>" method="post">
+                            <input type="submit" value="削除"></input>
+                        </form>
+                    </span>
+                    <span>
+                        <form action="/edit/<%= content.id %>" method="post">
+                            <input type="submit" value="編集"></input>
+                        </form>
+                    </span>
+                <% end %>
+            </li>
+            <% end %>
+        </ul>
+</body>

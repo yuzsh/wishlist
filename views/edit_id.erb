@@ -1,0 +1,16 @@
+
+<body>
+    
+    <div class="container" style="padding:20px 0">
+      
+      <!-- edit form -->
+      <form action="/renew/<%= @content.id %>" method="post">
+          <p>item_name：<input type="text" name="item_name" value="<%= @content.item_name %>"></p>
+          <p>comment：<input type="text" name="comment" value="<%= @content.comment %>"></p>
+          <p><input type="submit" class="btn btn-primary" value="done"></p>
+      </form>
+      <!---->
+    
+    </div>
+
+</body>

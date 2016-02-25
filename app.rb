@@ -15,10 +15,28 @@ get '/' do
     erb :index
 end
 
+get '/signin' do
+    erb :signin
+end
+
+get '/signup' do
+    erb :signup
+end
+
+post '/register' do
+    User.create({
+        username: params[:username],
+        email: params[:email],
+        password: params[:password]
+    })
+    
+    redirect '/'
+end
+
 post '/new' do
     Contribution.create({
-        name: params[:user_name],
-        body: params[:body],
+        item_name: params[:item_name],
+        comment: params[:comment],
         img: "",
         good: 0
     })
@@ -35,16 +53,21 @@ post '/delete/:id' do
     redirect '/'
 end
 
+post '/edit' do
+    @contents = Contribution.order('id desc').all
+    erb :edit
+end
+
 post '/edit/:id' do
     @content = Contribution.find(params[:id])
-    erb :edit
+    erb :edit_id
 end
 
 post '/renew/:id' do
     @content = Contribution.find(params[:id])
     @content.update({
-        name: params[:user_name],
-        body: params[:body]
+        item_name: params[:item_name],
+        comment: params[:comment]
     })
     redirect '/'
 end
@@ -55,5 +78,9 @@ post '/good/:id' do
     @content.update({
         good: good + 1
     })
+    redirect '/'
+end
+
+post '/back' do
     redirect '/'
 end
