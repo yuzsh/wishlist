@@ -9,6 +9,8 @@ require './models.rb'
 
 require './models/bbs.rb'
 
+enable :sessions
+
 
 get '/' do
     @contents = Contribution.order('id desc').all
@@ -23,13 +25,32 @@ get '/signup' do
     erb :signup
 end
 
-post '/register' do
-    User.create({
+post '/signin' do
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+        session[:user] = user.id
+    end
+    
+    redirect '/'
+end
+
+post '/signup' do
+    @user = User.create({
         username: params[:username],
         email: params[:email],
-        password: params[:password]
+        password: params[:password],
+        password_confirmation: params[:password_confirmation]
     })
     
+    if @user.persisted?
+        session[:user] = @user.id
+    end
+    
+    redirect '/'
+end
+
+get '/signout' do
+    session[:user] = nil
     redirect '/'
 end
 
