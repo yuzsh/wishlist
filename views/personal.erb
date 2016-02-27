@@ -3,7 +3,7 @@
         <ul>
             <% @contents.each do |content| %>
             <li>
-                <% unless content.img.empty? %>
+                <% unless content.img == [] %>
                 <p><%= content.name %></p>
                     <p><img src="<%= content.img %>"></p>
                     <p>by : user name</p>

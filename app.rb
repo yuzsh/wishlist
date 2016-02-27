@@ -1,13 +1,12 @@
 require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
+# require 'pry'
 require 'open-uri'
 require "sinatra/json"
-
 require './image_uploader.rb'
-require './models.rb'
-
 require './models/bbs.rb'
+require 'bcrypt'
 
 enable :sessions
 

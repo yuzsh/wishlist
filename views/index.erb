@@ -1,5 +1,4 @@
 
-<body>
     <!-- navigation bar -->
       <nav class="navbar navbar-default">
         <div class="navbar-header">
@@ -78,7 +77,7 @@
     
     <!-- Thumbnail -->
     <% @contents.each do |content| %>
-        <% unless content.img.empty? %>
+        <% unless content.img == [] %>
                 <div class="col">
                   <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
@@ -86,7 +85,7 @@
                       <div class="caption">
                         <h3><%= content.item_name %></h3>
                         <p><%= content.comment %></p>
-                        <p>by : user name</p>
+                        <p>by : <%= @user.username %></p>
                         <span>Good: <%= content.good %></span>
                         <div class="box" style="margin:10px;"></div>
                         <span>
@@ -120,5 +119,4 @@
         <!---->
     
     </div>
-    
-</body>
+
