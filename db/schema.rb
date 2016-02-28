@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227062225) do
+ActiveRecord::Schema.define(version: 20160228053847) do
 
   create_table "contributions", force: :cascade do |t|
     t.string   "item_name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160227062225) do
     t.integer  "good",       default: 0
     t.string   "tags"
     t.string   "username"
+    t.integer  "want",       default: 0
   end
 
   create_table "users", force: :cascade do |t|

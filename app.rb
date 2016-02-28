@@ -102,15 +102,21 @@ post '/good/:id' do
     redirect '/'
 end
 
+post '/want/:id' do
+    @content = Contribution.find(params[:id])
+    want = @content.want
+    @content.update({
+        want: want + 1
+    })
+    redirect '/'
+end
+
 post '/back' do
     redirect '/'
 end
 
 get '/user/:user_id' do
-    # params[:user_id] これはユーザーID（数字）
-    # User.where(id: params[:user_id]).first.username
-    # name = User.where()
-    @contents = Contribution.where(id: params[:user_id])
-    # @user_id = params[:user_id]
+    name = User.where(id: params[:user_id]).first.username
+    @contents = Contribution.where(username: name)
     erb :personal
 end

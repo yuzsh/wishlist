@@ -5,11 +5,18 @@
     <title>i wish</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="stylesheets/bootstrap.min_paper.css" rel="stylesheet">
-    <link href="stylesheets/style.css" rel="stylesheet">
+    <!-- bootstrap template -->
+    <link href="/stylesheets/bootstrap-3.3.6-dist/css/bootstrap.min_paper.css" rel="stylesheet">
+    <!-- custom layout -->
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <!-- font-awesome for icon -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- for viewer -->
+    <link href="/lightbox2-master/dist/css/lightbox.css" rel="stylesheet">
 </head>
 <body>
     <%= yield %>
+    <script type="text/javascript" src="/lightbox2-master/dist/js/lightbox-plus-jquery.js"></script>
+    <script type="text/javascript" src="/stylesheets/bootstrap-3.3.6-dist/js/bootstrap-filestyle.min.js"> </script>
 </body>
 </html>

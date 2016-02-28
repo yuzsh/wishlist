@@ -9,8 +9,12 @@
           <ul class="nav nav-tabs">
             <li data-toggle="tab"><a href="/">Home</a></li>
             <li data-toggle="tab"><a href="#upload">Upload</a></li>
-            <li data-toggle="tab" class="navbar-right"><a href="/signin">Sign in</a></li>
-            <li data-toggle="tab" class="navbar-right"><a href="/signup">Sign up</a></li>
+            <% unless session[:user] %>
+              <li data-toggle="tab" class="navbar-right"><a href="/signin">Sign in</a></li>
+              <li data-toggle="tab" class="navbar-right"><a href="/signup">Sign up</a></li>
+            <% else %>
+              <li data-toggle="tab" class="navbar-right"><a href="/signout">Sign out</a></li>
+            <% end %>
           </ul>
         </div>
       </nav>
@@ -22,7 +26,7 @@
       <form action="/renew/<%= @content.id %>" method="post">
           <p>item_name：<input type="text" name="item_name" value="<%= @content.item_name %>"></p>
           <p>comment：<input type="text" name="comment" value="<%= @content.comment %>"></p>
-          <p><input type="submit" class="btn btn-primary" value="done"></p>
+          <p style="margin: 20px;"><input type="submit" class="btn btn-primary" value="done"></p>
       </form>
       <!---->
     

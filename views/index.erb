@@ -35,7 +35,13 @@
                                 <span> or </span>
                             </div>
                             <div class="col-md-6">
-                                <p><input type="file" name="file" class="btn btn-success"></p>
+                                <p><input type="file" name="file" class="filestyle" data-buttonName="btn-success" data-input="false" data-classIcon="icon-plus" data-buttonText="select image"></p>
+                                <script type="text/javascript">
+                                  $(function(){
+                                    $(":file").filestyle({input: false});
+                                    $(":file").filestyle({buttonName: "btn-success"});
+                                    {);
+                                </script>
                             </div>
                         </div>
                         <div class="form-group">
@@ -82,16 +88,24 @@
                   <div style="height: 500px;">
                     <div class="col-sm-6 col-md-3" style="width: 90%;">
                       <div class="thumbnail">
-                        <a href=""><img src="<%= content.img %>" class="img-rounded img-responsive"></a>
+                        <a href="<%= content.img %>" data-lightbox="image">
+                          <img src="<%= content.img %>" alt="<%= content.img %>" class="img-rounded img-responsive">
+                        </a>
                         <div class="caption">
                           <h3><%= content.item_name %></h3>
                           <p><%= content.comment %></p>
                           <p>by : <a href="/user/<%= User.where(username: content.username).first.id %>"><%= content.username %></a></p>
                           <span>Good: <%= content.good %></span>
+                          <span style="padding: 0 0 0 30px">Want: <%= content.want %></span>
                           <div class="box" style="margin:10px;"></div>
-                          <span>
+                          <span class="btn-group">
                               <form action="/good/<%= content.id %>" method="post">
                                   <input type="submit" class="btn btn-primary" value="&#xf087;Good!"></input>
+                              </form>
+                          </span>
+                          <span class="btn-group pull-right">
+                              <form action="/want/<%= content.id %>" method="post">
+                                  <input type="submit" class="btn btn-success" value="&#xf087;Want!"></input>
                               </form>
                           </span>
                         </div>
