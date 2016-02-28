@@ -8,13 +8,15 @@
         <div class="cillapse navbar-collapse target">
           <ul class="nav nav-tabs">
             <li data-toggle="tab"><a href="/">Home</a></li>
-            <li data-toggle="tab"><a href="#upload">Upload</a></li>
-            <% unless session[:user] %>
-              <li data-toggle="tab" class="navbar-right"><a href="/signin">Sign in</a></li>
-              <li data-toggle="tab" class="navbar-right"><a href="/signup">Sign up</a></li>
-            <% else %>
-              <li data-toggle="tab" class="navbar-right"><a href="/signout">Sign out</a></li>
-            <% end %>
+            <!-- dropdown menu -->
+            <li class="dropdown navbar-right">
+              <a href="#" class="dropdown-toggle" id=”account-menu″ data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Account <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby=”account-menu″>
+                <li><a href="/user/<%= session[:user] %>"><%= @username %></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/signout">Sign Out</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </nav>

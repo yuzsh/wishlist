@@ -16,6 +16,7 @@ get '/' do
         erb :cover
     else
         @contents = Contribution.order('id desc').all
+        @username = User.find(session[:user]).username
         erb :index
     end
 end
@@ -36,6 +37,7 @@ post '/signin' do
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
         session[:user] = user.id
+        session[:name] = user.username
     end
     
     redirect '/'
@@ -51,6 +53,7 @@ post '/signup' do
     
     if @user.persisted?
         session[:user] = @user.id
+        session[:name] = @user.username
     end
     
     redirect '/'
@@ -83,7 +86,8 @@ post '/delete/:id' do
 end
 
 post '/edit' do
-    @contents = Contribution.order('id desc').all
+    name = User.find_by(id: session[:user]).username
+    @contents = Contribution.where(username: name)
     erb :edit
 end
 

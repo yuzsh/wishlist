@@ -4,17 +4,20 @@
         <div class="navbar-header">
           <a href="" class="navbar-brand active">i wish</a>
         </div>
-
         <div class="cillapse navbar-collapse target">
           <ul class="nav nav-tabs">
             <li class="active" data-toggle="tab"><a href="#home">Home</a></li>
             <li data-toggle="tab"><a href="#upload">Upload</a></li>
-            <% unless session[:user] %>
-              <li data-toggle="tab" class="navbar-right"><a href="/signin">Sign in</a></li>
-              <li data-toggle="tab" class="navbar-right"><a href="/signup">Sign up</a></li>
-            <% else %>
-              <li data-toggle="tab" class="navbar-right"><a href="/signout">Sign out</a></li>
-            <% end %>
+            <li data-toggle="tab" class="navbar-right"><a href="/signout">Sign Out</a></li>
+            <!-- dropdown menu -->
+            <li class="dropdown navbar-right">
+              <a href="#" class="dropdown-toggle" id=”account-menu″ data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Account <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby=”account-menu″>
+                <li><a href="/user/<%= session[:user] %>"><%= @username %></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/signout">Sign Out</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </nav>
@@ -27,9 +30,8 @@
                 <div class="container" style="padding:20px 10;">
                     <form action="/new" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="form-group form-inline col-md-3">
+                            <div class="form-group form-inline col-md-2">
                                 <input type="text" class="form-control" placeholder=" Enter Image URL" name="image_url">
-                                <input type="submit" class="btn btn-success" value="Go"></input>
                             </div>
                             <div class="col-md-1" style="font-size:large; color:#777777">
                                 <span> or </span>
@@ -100,12 +102,12 @@
                           <div class="box" style="margin:10px;"></div>
                           <span class="btn-group">
                               <form action="/good/<%= content.id %>" method="post">
-                                  <input type="submit" class="btn btn-primary" value="&#xf087;Good!"></input>
+                                  <input type="submit" class="btn btn-primary" value="&#xf087; Good!"></input>
                               </form>
                           </span>
                           <span class="btn-group pull-right">
                               <form action="/want/<%= content.id %>" method="post">
-                                  <input type="submit" class="btn btn-success" value="&#xf08a;Want!"></input>
+                                  <input type="submit" class="btn btn-success" value="&#xf08a; Want!"></input>
                               </form>
                           </span>
                         </div>
