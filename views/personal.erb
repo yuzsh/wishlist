@@ -49,9 +49,9 @@
     <!-- Thumbnail -->
     <% @contents.each do |content| %>
         <% unless content.img == [] %>
-                <div class="row" style="width: 35%; float: left;">
-                  <div style="height: 500px;">
-                    <div class="col-sm-6 col-md-3" style="width: 90%;">
+                <div class="row center-block" style="width: 35%;">
+                  <div>
+                    <div class="col-sm-12 col-md-12" style="width: 90%;">
                       <div class="thumbnail">
                         <a href="<%= content.img %>" data-lightbox="image">
                           <img src="<%= content.img %>" alt="<%= content.img %>" class="img-rounded img-responsive">
@@ -94,9 +94,11 @@
         <!---->
         
         <!-- edit -->
-        <form action="/edit" method="post">
-            <input type="submit" class="btn btn-success" value="&#xf044;Edit"></input>
-        </form>
+          <% if User.where(username: @contents.first.username).first.id == session[:user] %>
+              <form action="/edit" method="post">
+                  <input type="submit" class="btn btn-success" value="&#xf044;Edit"></input>
+              </form>
+          <% end %>
         <!---->
     
     </div>

@@ -12,9 +12,17 @@ enable :sessions
 
 
 get '/' do
-    @contents = Contribution.order('id desc').all
-    erb :index
+    unless session[:user]
+        erb :cover
+    else
+        @contents = Contribution.order('id desc').all
+        erb :index
+    end
 end
+
+# get '/cover' do
+#     erb :cover
+# end
 
 get '/signin' do
     erb :signin
@@ -116,6 +124,7 @@ post '/back' do
 end
 
 get '/user/:user_id' do
+    # Userテーブルからユーザ名取得
     name = User.where(id: params[:user_id]).first.username
     @contents = Contribution.where(username: name)
     erb :personal
