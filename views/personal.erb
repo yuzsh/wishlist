@@ -62,17 +62,19 @@
                           <p>by : <a href=""><%= content.username %></a></p>
                           <span>Good: <%= content.good %></span>
                           <span style="padding: 0 0 0 30px">Want: <%= content.want %></span>
-                          <div class="box" style="margin:10px;"></div>
-                          <span class="btn-group">
-                              <form action="/good/<%= content.id %>" method="post">
-                                  <input type="submit" class="btn btn-primary" value="&#xf087;Good!"></input>
-                              </form>
-                          </span>
-                          <span class="btn-group pull-right">
-                              <form action="/want/<%= content.id %>" method="post">
-                                  <input type="submit" class="btn btn-success" value="&#xf087;Want!"></input>
-                              </form>
-                          </span>
+                            <% if User.where(username: @contents.first.username).first.id != session[:user] %>
+                              <div class="box" style="margin:10px;"></div>
+                              <span class="btn-group">
+                                  <form action="/good/<%= content.id %>" method="post">
+                                      <input type="submit" class="btn btn-primary" value="&#xf087;Good!"></input>
+                                  </form>
+                              </span>
+                              <span class="btn-group pull-right">
+                                  <form action="/want/<%= content.id %>" method="post">
+                                      <input type="submit" class="btn btn-success" value="&#xf08a;Want!"></input>
+                                  </form>
+                              </span>
+                            <% end %>
                         </div>
                       </div>
                     </div>
