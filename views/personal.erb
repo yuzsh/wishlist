@@ -1,13 +1,13 @@
-
+  <div class="bg-image-1">
     <!-- navigation bar -->
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default navbar-fixed-top">
         <div class="navbar-header">
           <a href="" class="navbar-brand active">i wish</a>
         </div>
         <div class="">
           <ul class="nav nav-tabs">
-            <li data-toggle="tab"><a href="/">Home</a></li>
-            <li data-toggle="tab"><a href="#upload">Upload</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#upload">Upload</a></li>
             <!-- dropdown menu -->
             <li class="dropdown navbar-right" style="padding: 0 20px 0 0;">
               <a href="#" class="dropdown-toggle" id=”account-menu″ data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Account <span class="caret"></span></a>
@@ -25,11 +25,11 @@
     
     <div class="container" style="padding:20px 0">
         <!-- navigation bar -->
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default" style="border-radius: 10px;">
         <div class="navbar-header">
         </div>
 
-        <div class="cillapse navbar-collapse target">
+        <div class="collapse navbar-collapse target">
           <ul class="nav navbar-nav">
             <li><a>Sort by: </a></li>
           </ul>
@@ -54,26 +54,27 @@
                 <div class="row center-block" style="width: 35%;">
                   <div>
                     <div style="width: 90%;">
-                      <div class="thumbnail">
+                      <div class="thumbnail" style="border-radius: 10px;">
                         <a href="<%= content.img %>" data-lightbox="image">
-                          <img src="<%= content.img %>" alt="<%= content.img %>" class="img-rounded img-responsive">
+                          <img src="<%= content.img %>" alt="<%= content.img %>" class="img-responsive" style="border-radius: 10px;">
                         </a>
                         <div class="caption">
-                          <h4><%= content.item_name %></h4>
-                          <p><%= content.comment %></p>
-                          <p>by : <a href=""><%= content.username %></a></p>
-                          <span>Good: <%= content.good %></span>
+                          <h4 style="padding: 0 0 0 20px"><%= content.item_name %></h4>
+                          <p style="padding: 0 0 0 20px"><%= content.comment %></p>
+                          <p style="padding: 0 0 0 20px">by : <a href=""><%= content.username %></a></p>
+                          <div class="box" style="margin:10px;"></div>
+                          <span style="padding: 0 0 0 20px">Good: <%= content.good %></span>
                           <span style="padding: 0 0 0 30px">Want: <%= content.want %></span>
                             <% if User.where(username: @contents.first.username).first.id != session[:user] %>
                               <div class="box" style="margin:10px;"></div>
-                              <span class="btn-group">
+                              <span class="btn-group" style="padding: 0 0 0 20px">
                                   <form action="/good/<%= content.id %>" method="post">
-                                      <input type="submit" class="btn btn-primary" value="&#xf087; Good!"></input>
+                                      <input type="submit" class="btn btn-default" style="border: 1px solid #157EF4" value="&#xf087; Good!"></input>
                                   </form>
                               </span>
-                              <span class="btn-group pull-right">
+                              <span class="btn-group pull-right" style="padding: 0 20px 0 0">
                                   <form action="/want/<%= content.id %>" method="post">
-                                      <input type="submit" class="btn btn-success" value="&#xf08a; Want!"></input>
+                                      <input type="submit" class="btn btn-default" style="border: 1px solid #3CA43A" value="&#xf08a; Want!"></input>
                                   </form>
                               </span>
                             <% end %>
@@ -106,4 +107,4 @@
         <!---->
     
     </div>
-
+  </div>

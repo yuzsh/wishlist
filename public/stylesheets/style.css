@@ -6,6 +6,10 @@ font-family: FontAwesome /*FontAwesomeをフォント指定*/;
    border-bottom: 1px solid #aaaaaa;
 }
 
-.bg-image {
+.bg-image-cover {
   background: url(/images/SplitShire-2.jpg) center center / cover no-repeat fixed;
+}
+
+.bg-image-1 {
+  background: url(/images/background.jpg) center center / cover no-repeat fixed;
 }
