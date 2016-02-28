@@ -8,12 +8,11 @@
           <ul class="nav nav-tabs">
             <li class="active" data-toggle="tab"><a href="#home">Home</a></li>
             <li data-toggle="tab"><a href="#upload">Upload</a></li>
-            <li data-toggle="tab" class="navbar-right"><a href="/signout">Sign Out</a></li>
             <!-- dropdown menu -->
             <li class="dropdown navbar-right">
               <a href="#" class="dropdown-toggle" id=”account-menu″ data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Account <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby=”account-menu″>
-                <li><a href="/user/<%= session[:user] %>"><%= @username %></a></li>
+                <li><a href="/user/<%= session[:user] %>"><%= session[:name] %></a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="/signout">Sign Out</a></li>
               </ul>
