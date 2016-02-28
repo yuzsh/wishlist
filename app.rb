@@ -22,10 +22,6 @@ get '/' do
     end
 end
 
-# get '/cover' do
-#     erb :cover
-# end
-
 get '/signin' do
     erb :signin
 end
