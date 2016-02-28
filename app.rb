@@ -58,7 +58,8 @@ post '/new' do
         item_name: params[:item_name],
         comment: params[:comment],
         img: "",
-        good: 0
+        good: 0,
+        username: User.find(session[:user]).username
     })
     
     if params[:file]
@@ -103,4 +104,13 @@ end
 
 post '/back' do
     redirect '/'
+end
+
+get '/user/:user_id' do
+    # params[:user_id] これはユーザーID（数字）
+    # User.where(id: params[:user_id]).first.username
+    # name = User.where()
+    @contents = Contribution.where(id: params[:user_id])
+    # @user_id = params[:user_id]
+    erb :personal
 end
