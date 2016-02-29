@@ -35,9 +35,11 @@ post '/signin' do
     if user && user.authenticate(params[:password])
         session[:user] = user.id
         session[:name] = user.username
+        redirect '/'
+    else
+        erb :signin_do
     end
     
-    redirect '/'
 end
 
 post '/signup' do
@@ -51,6 +53,10 @@ post '/signup' do
     if @user.persisted?
         session[:user] = @user.id
         session[:name] = @user.username
+    end
+    
+    unless @user.save
+        erb :signup_do
     end
     
     redirect '/'
@@ -84,7 +90,7 @@ end
 
 post '/edit' do
     name = User.find_by(id: session[:user]).username
-    @contents = Contribution.where(username: name)
+    @contents = Contribution.where(username: name).order('id desc')
     erb :edit
 end
 
@@ -127,6 +133,6 @@ end
 get '/user/:user_id' do
     # Userテーブルからユーザ名取得
     name = User.where(id: params[:user_id]).first.username
-    @contents = Contribution.where(username: name)
+    @contents = Contribution.where(username: name).order('id desc')
     erb :personal
 end
