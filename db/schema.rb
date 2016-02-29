@@ -11,27 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229004653) do
+ActiveRecord::Schema.define(version: 20160229015137) do
 
   create_table "contributions", force: :cascade do |t|
-    t.string   "item_name"
+    t.string   "item_name",              null: false
     t.string   "comment"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
     t.string   "img"
     t.integer  "good",       default: 0
-    t.string   "tags"
-    t.string   "username"
     t.integer  "want",       default: 0
+    t.integer  "user_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "password_confirmation"
+    t.string   "username",        null: false
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "users", ["username", "email"], name: "index_users_on_username_and_email", unique: true

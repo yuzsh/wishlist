@@ -3,7 +3,7 @@ ActiveRecord::Base.establish_connection(
 
 class Contribution < ActiveRecord::Base
   
-  has_one :user
+  belongs_to :user
   
   validates :item_name,
       presence: true
@@ -12,21 +12,18 @@ end
 
 class User < ActiveRecord::Base
   
-  belongs_to :contributions
+  has_many :contributions
     
   has_secure_password
   VALID_EMAIL_REGEX =  /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     
     validates :username,
         length: {in: 1..15},
-        presence: true
+        presence: true,
+        uniqueness: true
     
     validates :email,
         format: { with: VALID_EMAIL_REGEX },
         presence: true,
         uniqueness: true
-        
-    validates :password,
-        length: {in: 1..10},
-        presence: true
 end

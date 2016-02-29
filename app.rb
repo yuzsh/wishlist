@@ -5,8 +5,8 @@ require 'pry'
 require 'open-uri'
 require "sinatra/json"
 require './image_uploader.rb'
-require './models/bbs.rb'
 require 'bcrypt'
+require './models/bbs.rb'
 
 
 enable :sessions
@@ -26,8 +26,16 @@ get '/signin' do
     erb :signin
 end
 
+get '/signin_do' do
+    erb :signin_do
+end
+
 get '/signup' do
     erb :signup
+end
+
+get '/signup_do' do
+    erb :signup_do
 end
 
 post '/signin' do
@@ -37,7 +45,7 @@ post '/signin' do
         session[:name] = user.username
         redirect '/'
     else
-        erb :signin_do
+        redirect '/signin_do'
     end
     
 end
@@ -46,8 +54,7 @@ post '/signup' do
     @user = User.create({
         username: params[:username],
         email: params[:email],
-        password: params[:password],
-        password_confirmation: params[:password_confirmation]
+        password: params[:password]
     })
     
     if @user.persisted?
@@ -56,7 +63,11 @@ post '/signup' do
     end
     
     unless @user.save
-        erb :signup_do
+        # ここにエラーハンドリング 
+        # u = User.new
+        # u.valid?
+        # @errors = @user.errors
+        redirect '/signup_do'
     end
     
     redirect '/'
@@ -68,12 +79,12 @@ get '/signout' do
 end
 
 post '/new' do
-    Contribution.create({
+    @latest_post = Contribution.create({
         item_name: params[:item_name],
         comment: params[:comment],
         img: "",
         good: 0,
-        username: User.find(session[:user]).username
+        user_id: session[:user]
     })
     
     if params[:file]
@@ -89,8 +100,7 @@ post '/delete/:id' do
 end
 
 post '/edit' do
-    name = User.find_by(id: session[:user]).username
-    @contents = Contribution.where(username: name).order('id desc')
+    @contents = Contribution.where(user_id: session[:user]).order('id desc')
     erb :edit
 end
 
@@ -131,8 +141,6 @@ post '/back' do
 end
 
 get '/user/:user_id' do
-    # Userテーブルからユーザ名取得
-    name = User.where(id: params[:user_id]).first.username
-    @contents = Contribution.where(username: name).order('id desc')
+    @contents = Contribution.where(user_id: params[:user_id]).order('id desc')
     erb :personal
 end
