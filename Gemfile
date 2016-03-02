@@ -12,7 +12,9 @@ gem 'cloudinary'
 gem 'dotenv'
 
 gem 'bcrypt'
-gem 'activerecord-reputation-system'
+
+gem 'activerecord-reputation-system', github: 'NARKOZ/activerecord-reputation-system', branch: 'rails4'
+gem "strong_parameters"
 
 group :development do
   gem 'sqlite3'

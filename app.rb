@@ -88,6 +88,8 @@ post '/new' do
     
     if params[:file]
         image_upload(params[:file])
+    # else if params[:url]
+        # Cloudinary::Uploader.upload(params[:url], :public_id => 'sample_remote')
     end
     
     redirect '/'
