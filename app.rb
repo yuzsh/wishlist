@@ -13,12 +13,12 @@ enable :sessions
 
 
 get '/' do
-    unless session[:user]
-        erb :cover
-    else
+    if session[:user]
         @contents = Contribution.order('id desc').all
         @username = User.find(session[:user]).username
         erb :index
+    else
+        erb :cover
     end
 end
 
@@ -46,8 +46,8 @@ post '/signin' do
         redirect '/'
     else
         redirect '/signin_do'
+        # render '/signin_do'
     end
-    
 end
 
 post '/signup' do
@@ -63,11 +63,10 @@ post '/signup' do
     end
     
     unless @user.save
-        # ここにエラーハンドリング 
-        # u = User.new
-        # u.valid?
-        # @errors = @user.errors
+        # @user.errors
         redirect '/signup_do'
+        # render '/signup_do'
+        return
     end
     
     redirect '/'
@@ -143,4 +142,14 @@ end
 get '/user/:user_id' do
     @contents = Contribution.where(user_id: params[:user_id]).order('id desc')
     erb :personal
+end
+
+get '/upload_from_extension' do
+    if session[:user]
+        @contents = Contribution.order('id desc').all
+        @username = User.find(session[:user]).username
+        erb :index
+    else
+        redirect "/signin"
+    end
 end
