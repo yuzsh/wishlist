@@ -23,6 +23,22 @@
     <!---->
     
     <div class="container" style="padding:20px 0">
+      
+    <!-- profile -->
+    <div style="float: right;">
+      <div style="margin: 0 50px 0 0; position: fixed; right: 0;">
+      <div class="thumbnail" style="width: 200px; height: 350px; border-radius: 10px;">
+        <div style="border: 2px solid #777; width: 50%; border-radius: 50px;" class="text-center">
+          <h1 class="text-center"><span class="glyphicon glyphicon-user"></span></h1>
+        </div>
+        <div>
+          <h5>name: <span style="color: #59B2E0"><%= @name %></span></h5>
+          <h6>description:</h6>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!---->
         
     <!-- Thumbnail -->
     <% @contents.each do |content| %>
@@ -39,6 +55,7 @@
                       <div class="box" style="margin:10px;"></div>
                       <span style="padding: 0 0 0 20px">Good: <%= content.good %></span>
                       <span style="padding: 0 0 0 30px">Want: <%= content.want %></span>
+                      <span style="padding: 0 0 0 30px"><span class="glyphicon glyphicon-comment"></span> : 0</span>
                       <div class="box" style="margin:10px;"></div>
                       <div>
                           <span class="btn-group" style="padding: 0 0 0 20px">
@@ -66,10 +83,10 @@
     <div class="container" style="padding:20px 0">
         
         <!-- pager -->
-        <ul class="pager">
-            <li class="previous"><a href="">prev</a></li>
-            <li class="next"><a href="">next</a></li>
-        </ul>
+        <!--<ul class="pager">-->
+        <!--    <li class="previous"><a href="">prev</a></li>-->
+        <!--    <li class="next"><a href="">next</a></li>-->
+        <!--</ul>-->
         <!---->
         
         <!-- back -->

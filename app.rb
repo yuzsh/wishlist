@@ -88,8 +88,11 @@ post '/new' do
     
     if params[:file]
         image_upload(params[:file])
-    # else if params[:url]
-        # Cloudinary::Uploader.upload(params[:url], :public_id => 'sample_remote')
+    elsif params[:image_url]
+        # image_upload(params[:image_url])
+        upload = Cloudinary::Uploader.upload(params[:image_url])
+        contents = Contribution.last
+        contents.update_attribute(:img, upload['url'])
     end
     
     redirect '/'
@@ -102,6 +105,7 @@ end
 
 post '/edit' do
     @contents = Contribution.where(user_id: session[:user]).order('id desc')
+    @name = User.find_by(id: @contents.first.user_id).username
     erb :edit
 end
 
@@ -124,6 +128,7 @@ post '/good/:id' do
     good = @content.good
     @content.update({
         good: good + 1
+        # good: post.add_evaluation(:likes, 1, @content.user_id)
     })
     redirect '/'
 end
@@ -143,6 +148,7 @@ end
 
 get '/user/:user_id' do
     @contents = Contribution.where(user_id: params[:user_id]).order('id desc')
+    @name = User.find_by(id: @contents.first.user_id).username
     erb :personal
 end
 
@@ -150,7 +156,7 @@ get '/upload_from_extension' do
     if session[:user]
         @contents = Contribution.order('id desc').all
         @username = User.find(session[:user]).username
-        erb :index
+        erb :index_upload
     else
         redirect "/signin"
     end
