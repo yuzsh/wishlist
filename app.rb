@@ -82,14 +82,12 @@ post '/new' do
         item_name: params[:item_name],
         comment: params[:comment],
         img: "",
-        good: 0,
         user_id: session[:user]
     })
     
     if params[:file]
         image_upload(params[:file])
     elsif params[:image_url]
-        # image_upload(params[:image_url])
         upload = Cloudinary::Uploader.upload(params[:image_url])
         contents = Contribution.last
         contents.update_attribute(:img, upload['url'])
@@ -124,21 +122,31 @@ post '/renew/:id' do
 end
 
 post '/good/:id' do
-    @content = Contribution.find(params[:id])
-    good = @content.good
-    @content.update({
-        good: good + 1
-        # good: post.add_evaluation(:likes, 1, @content.user_id)
-    })
+    good = Good.where(user_id: session[:user]).find_by(contribution_id: params[:id])
+    
+    if good
+      good.destroy
+      
+    else
+      Good.create({
+        contribution_id: params[:id],
+        user_id: session[:user]
+      })
+    end
     redirect '/'
 end
 
 post '/want/:id' do
-    @content = Contribution.find(params[:id])
-    want = @content.want
-    @content.update({
-        want: want + 1
-    })
+    want = Want.where(user_id: session[:user]).find_by(contribution_id: params[:id])
+    if want
+      want.destroy
+      
+    else
+      Want.create({
+        contribution_id: params[:id],
+        user_id: session[:user]
+      })
+    end
     redirect '/'
 end
 

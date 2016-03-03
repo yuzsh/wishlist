@@ -53,8 +53,8 @@
                       <p style="padding: 0 0 0 20px"><%= content.comment %></p>
                       <p style="padding: 0 0 0 20px">by : <a href="/user/<%= content.user_id %>"><%= User.find_by(id: content.user_id).username %></a></p>
                       <div class="box" style="margin:10px;"></div>
-                      <span style="padding: 0 0 0 20px">Good: <%= content.good %></span>
-                      <span style="padding: 0 0 0 30px">Want: <%= content.want %></span>
+                      <span style="padding: 0 0 0 20px">Good: <%= Good.where(contribution_id: content.id).count %></span>
+                      <span style="padding: 0 0 0 30px">Want: <%= Good.where(contribution_id: content.id).count %></span>
                       <span style="padding: 0 0 0 30px"><span class="glyphicon glyphicon-comment"></span> : 0</span>
                       <div class="box" style="margin:10px;"></div>
                       <div>

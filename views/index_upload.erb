@@ -22,8 +22,6 @@
       </nav>
     <!---->
     
-    <!-- chrome extension -->
-    <!--<script type="text/javascript" src="/js/chrome_extension.js"> </script>-->
     
     <!-- Upload Image -->
     <div id="uploader" style="padding: 20px 0 0 0;">
@@ -108,17 +106,25 @@
                           <p style="padding: 0 0 0 20px"><%= content.comment %></p>
                           <p style="padding: 0 0 0 20px">by : <a href="/user/<%= content.user_id %>"><%= User.find_by(id: content.user_id).username %></a></p>
                           <div class="box" style="margin:10px;"></div>
-                          <span style="padding: 0 0 0 20px">Good: <%= content.good %></span>
-                          <span style="padding: 0 0 0 30px">Want: <%= content.want %></span>
+                          <span style="padding: 0 0 0 20px">Good: <%= Good.where(contribution_id: content.id).count %></span>
+                          <span style="padding: 0 0 0 30px">Want: <%= Want.where(contribution_id: content.id).count %></span>
                           <div class="box" style="margin:10px;"></div>
                           <span class="btn-group" style="padding: 0 0 0 20px">
                               <form action="/good/<%= content.id %>" method="post">
-                                  <input type="submit" class="btn btn-default" style="border: 1px solid #157EF4" value="&#xf087; Good!"></input>
+                                <% if Good.where(user_id: session[:user]).first %>
+                                  <input type="submit" class="btn btn-default" style="border: 1px solid #157EF4; opacity: 0.5;" value="&#xf087; Good!"></input>
+                                <% else %>
+                                  <input type="submit" class="btn btn-default" style="border: 1px solid #157EF4;" value="&#xf087; Good!"></input>
+                                <% end %>
                               </form>
                           </span>
                           <span class="btn-group pull-right" style="padding: 0 20px 0 0">
                               <form action="/want/<%= content.id %>" method="post">
-                                  <input type="submit" class="btn btn-default" style="border: 1px solid #3CA43A" value="&#xf08a; Want!"></input>
+                                <% if Want.where(user_id: session[:user]).first %>
+                                  <input type="submit" class="btn btn-default" style="border: 1px solid #3CA43A; opacity: 0.5" value="&#xf08a; Want!"></input>
+                                <% else %>
+                                  <input type="submit" class="btn btn-default" style="border: 1px solid #3CA43A;" value="&#xf08a; Want!"></input>
+                                <% end %>
                               </form>
                           </span>
                         </div>
