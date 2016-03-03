@@ -22,7 +22,7 @@ font-family: FontAwesome /*FontAwesomeをフォント指定*/;
 	text-decoration: none;
 	line-height: 54px;
 	outline: none;
-	background-color: transparent;
+	background-color: #fff;
 	border: 2px solid #777;
 	color: #777;
 	line-height: 50px;
@@ -44,7 +44,7 @@ font-family: FontAwesome /*FontAwesomeをフォント指定*/;
 }
 
 .button:hover {
-	background-color: rgba(255, 255, 255, .4);
+	background-color: rgba(255, 255, 255, .6);
 	letter-spacing: 2px;
 }
 
