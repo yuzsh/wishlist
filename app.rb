@@ -155,7 +155,7 @@ end
 
 get '/user/:user_id' do
   @contents = Contribution.where(user_id: params[:user_id]).order('id desc')
-  @name = User.find_by(id: @contents.first.user_id).username
+  @name = User.find_by(id: params[:user_id]).username
   erb :personal
 end
 
