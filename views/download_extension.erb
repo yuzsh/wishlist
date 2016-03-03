@@ -1,0 +1,69 @@
+  <body class="bg-image-1">
+    <!-- navigation bar -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+          <a href="" class="navbar-brand active">i wish</a>
+        </div>
+        <div class="">
+          <ul class="nav nav-tabs">
+            <li><a href="#home">Home</a></li>
+            <li id="upload_toggle"><a href="#upload">Upload<span class="caret"></span></a></li>
+            <!-- dropdown menu -->
+            <li class="dropdown navbar-right" style="padding: 0 20px 0 0;">
+              <a href="#" class="dropdown-toggle" id=”account-menu″ data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Account <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby=”account-menu″>
+                <li class="text-center"><a href="/user/<%= session[:user] %>"><%= session[:name] %></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/chrome_extension.crx" download="chrome_extension.crx">Download Extension</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="text-center"><a href="/signout">Sign Out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+      <div class="container" style="margin: 50px;">
+        <div class="thumbnail" style="border-radius: 10px;">
+          <ul>
+            <li><h3>Download Chrome Extension</h3></li>
+            <h5 style="padding: 0 0 30px 0;"><a href="/chrome_extension.crx" download="chrome_extension.crx">Click Here to Download Extension</a></h5>
+            <ul>
+              <li><h5 style="padding: 0 0 10px 0;">How to install extension</h5></li>
+              <ol>
+                <li> リンクをクリックしてGoogle Chromeの拡張機能をダウンロード ( chrome_extension.crx ) </li>
+                <p style="padding: 0 0 10px 0;"> Click link to download chrome extension ( chrome_extension.crx ) </p>
+                <li> chrome_extension.crxのダウンロードを続けますか？ → 保存 </li>
+                <p style="padding: 0 0 10px 0;"> Do you want to continue the download of chrome_extension.crx? → save </p>
+                <li> chromeの拡張機能のページを開く ( chrome://extensions/ をアドレスバーに入力)</li>
+                <p style="padding: 0 0 10px 0;"> Open the page of chrome extension ( Enter chrome://extensions/ in URL bar )</p>
+                <li> 開いたページにchrome_extension.crxをドラックアンドドロップしてインストール</li>
+                <p style="padding: 0 0 10px 0;"> drag and drop chrome_extension.crx to install</p>
+                <li> 「i wish extensionを追加しますか」→ 拡張機能を追加</li>
+                <p style="padding: 0 0 10px 0;"> click [add extension]</p>
+              </ol>
+              <li><h5 style="padding: 0 0 10px 0;">How to use extension</h5></li>
+              <ol>
+                <li> エクスポートしたい画像があるwebサイト上でアイコンをクリック </li>
+                <p style="padding: 0 0 10px 0;"> Click icon of extension on the web site which has image you want to export</p>
+                <li> <候補画像一覧>の中からエクスポートしたい画像を1枚選択 </li>
+                <p style="padding: 0 0 10px 0;"> Select a image you want to export from popup </p>
+                <li> [want it!]をクリック</li>
+                <p style="padding: 0 0 10px 0;"> Click [want it!]</p>
+                <li> 開いたページにすでに画像のリンクが貼られているので、item nameとcomentを入力して投稿！</li>
+                <p style="padding: 0 0 10px 0;"> Entry item name and comment</p>
+                <p style="padding: 0 0 10px 0;"> ※ログインしていない場合はログインが必要になるため、再度やり直してください</p>
+              </ol>
+            </ul>
+          </ul>
+        </div>
+        
+      <!-- back -->
+      <form action="/back" method="post">
+          <input type="submit" class="btn btn-default" value="&#xf060;Back"></input>
+      </form>
+      <!---->
+      
+      </div>
+
+  <body>

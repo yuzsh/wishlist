@@ -136,35 +136,39 @@ post '/good/:id' do
 end
 
 post '/want/:id' do
-    want = Want.where(user_id: session[:user]).find_by(contribution_id: params[:id])
-    if want
-      want.destroy
+  want = Want.where(user_id: session[:user]).find_by(contribution_id: params[:id])
+  if want
+    want.destroy
       
-    else
-      Want.create({
-        contribution_id: params[:id],
-        user_id: session[:user]
-      })
-    end
-    redirect '/'
+  else
+    Want.create({
+      contribution_id: params[:id],
+      user_id: session[:user]
+    })
+  end
+  redirect '/'
 end
 
 post '/back' do
-    redirect '/'
+  redirect '/'
 end
 
 get '/user/:user_id' do
-    @contents = Contribution.where(user_id: params[:user_id]).order('id desc')
-    @name = User.find_by(id: @contents.first.user_id).username
-    erb :personal
+  @contents = Contribution.where(user_id: params[:user_id]).order('id desc')
+  @name = User.find_by(id: @contents.first.user_id).username
+  erb :personal
 end
 
 get '/upload_from_extension' do
-    if session[:user]
-        @contents = Contribution.order('id desc').all
-        @username = User.find(session[:user]).username
-        erb :index_upload
-    else
-        redirect "/signin"
-    end
+  if session[:user]
+    @contents = Contribution.order('id desc').all
+    @username = User.find(session[:user]).username
+    erb :index_upload
+  else
+    redirect "/signin"
+  end
+end
+
+get "/download_extension" do
+  erb :download_extension
 end
