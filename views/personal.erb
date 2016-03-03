@@ -114,7 +114,7 @@
     <div class="container" style="padding:20px 0">
         
         <!-- edit -->
-          <% if @contents.first.user_id == session[:user] %>
+          <% unless params[:user_id] != session[:user] %>
               <form action="/edit" method="post">
                   <input type="submit" class="btn btn-success" value="&#xf044;Edit"></input>
               </form>
