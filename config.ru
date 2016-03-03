@@ -1,7 +1,7 @@
 require 'bundler'
 Bundler.require
 
-require './app'
+require './app.rb'
 
 Dotenv.load
 
