@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rake'
 gem 'sinatra'
-gem 'rails'
 gem 'sinatra-contrib'
 gem 'activerecord'
 gem 'sinatra-activerecord'
