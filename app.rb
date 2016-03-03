@@ -1,7 +1,6 @@
 require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
-require 'pry'
 require 'open-uri'
 require "sinatra/json"
 require './image_uploader.rb'
