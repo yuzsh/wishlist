@@ -13,9 +13,6 @@ gem 'dotenv'
 
 gem 'bcrypt'
 
-# gem 'activerecord-reputation-system', github: 'NARKOZ/activerecord-reputation-system', branch: 'rails4'
-# gem "strong_parameters"
-
 group :development do
   gem 'sqlite3'
   gem 'pry'
@@ -23,5 +20,4 @@ end
 
 group :production do
   gem 'pg'
-  gem 'rails_12factor'
 end
