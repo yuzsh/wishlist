@@ -114,7 +114,7 @@
     <div class="container" style="padding:20px 0">
         
         <!-- edit -->
-          <% if @name %>
+          <% if User.find_by(id: params[:user_id]).id == session[:user] %>
               <form action="/edit" method="post">
                   <input type="submit" class="btn btn-success" value="&#xf044;Edit"></input>
               </form>
